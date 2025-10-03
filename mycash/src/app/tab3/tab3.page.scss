@@ -1,0 +1,30 @@
+.settings-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.app-info-section,
+.actions-section,
+.support-section {
+  margin-bottom: 24px;
+}
+
+ion-card {
+  margin-bottom: 16px;
+}
+
+ion-item {
+  --inner-padding-end: 16px;
+}
+
+ion-item ion-icon {
+  margin-right: 16px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 8px;
+  }
+}

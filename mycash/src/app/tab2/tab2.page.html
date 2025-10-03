@@ -1,0 +1,60 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      MyCash - Analytics
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Analytics</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="analytics-container" *ngIf="summary">
+    <div class="summary-section">
+      <h3>Spending Overview</h3>
+      
+      <ion-card class="summary-card">
+        <ion-card-header>
+          <ion-card-title>Total Spending</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="amount-display">€{{ summary.totalAmount | number:'1.2-2' }}</div>
+          <p>{{ summary.count }} transactions</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="summary-card">
+        <ion-card-header>
+          <ion-card-title>Monthly Average</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="amount-display">€{{ summary.monthlyAverage | number:'1.2-2' }}</div>
+          <p>Estimated monthly spending</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="category-section">
+      <h3>Spending by Category</h3>
+      <ion-list>
+        <ion-item *ngFor="let category of getCategoryBreakdown()">
+          <ion-label>
+            <h2>{{ category.name }}</h2>
+            <p>€{{ category.amount | number:'1.2-2' }}</p>
+          </ion-label>
+          <ion-note slot="end">{{ category.percentage }}%</ion-note>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!summary || summary.count === 0">
+    <ion-icon name="bar-chart-outline" class="empty-icon"></ion-icon>
+    <h3>No Data Available</h3>
+    <p>Add some spending entries to see your analytics</p>
+  </div>
+</ion-content>
